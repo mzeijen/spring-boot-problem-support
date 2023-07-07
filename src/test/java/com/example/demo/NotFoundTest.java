@@ -49,7 +49,7 @@ class NotFoundTest {
                         "spring.mvc.static-path-pattern=/static/**"
                 }
         )
-        class WithThrowingExceptionOnHandlerNotFound extends DefaultConfig {
+        class WithoutResourceHandlerOnRoot extends DefaultConfig {
         }
 
     }
