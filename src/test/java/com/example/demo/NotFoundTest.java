@@ -3,6 +3,7 @@ package com.example.demo;
 import jakarta.servlet.http.HttpServletResponse;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Nested;
+import org.junit.jupiter.api.Test;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.web.reactive.error.DefaultErrorWebExceptionHandler;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -39,7 +40,7 @@ class NotFoundTest {
                         "spring.mvc.problemdetails.enabled=true"
                 }
         )
-        class DefaultConfig extends Test {
+        class DefaultConfig extends Tests {
         }
 
         @Nested
@@ -67,7 +68,7 @@ class NotFoundTest {
                         "spring.webflux.problemdetails.enabled=true",
                 }
         )
-        class DefaultConfig extends Test {
+        class DefaultConfig extends Tests {
         }
 
         @Nested
@@ -88,7 +89,7 @@ class NotFoundTest {
             classes = TestConfig.class,
             webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT
     )
-    static abstract class Test {
+    static abstract class Tests {
 
         @LocalServerPort
         int port;
@@ -122,7 +123,7 @@ class NotFoundTest {
          *    then this will also result in a {@link ResponseStatusException}, but at an earlier stage where it will be handled by the {@link DispatcherHandler#handleDispatchError} method.
          *    This then ensures it does get handled by the {@link ResponseEntityExceptionHandler}.
          */
-        @org.junit.jupiter.api.Test
+        @Test
         void should_return_404_problem_details_on_non_existing_path() {
             webTestClient.get()
                     .uri("/non-existing")

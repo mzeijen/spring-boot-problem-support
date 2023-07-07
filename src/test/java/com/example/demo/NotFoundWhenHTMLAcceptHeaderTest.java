@@ -2,6 +2,7 @@ package com.example.demo;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Nested;
+import org.junit.jupiter.api.Test;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.server.LocalServerPort;
@@ -29,7 +30,7 @@ class NotFoundWhenHTMLAcceptHeaderTest {
                         "spring.mvc.problemdetails.enabled=true"
                 }
         )
-        class DefaultConfig extends Test {
+        class DefaultConfig extends Tests {
         }
 
 
@@ -58,7 +59,7 @@ class NotFoundWhenHTMLAcceptHeaderTest {
                         "spring.webflux.problemdetails.enabled=true",
                 }
         )
-        class DefaultConfig extends Test {
+        class DefaultConfig extends Tests {
         }
 
         @Nested
@@ -79,7 +80,7 @@ class NotFoundWhenHTMLAcceptHeaderTest {
             classes = TestConfig.class,
             webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT
     )
-    static abstract class Test {
+    static abstract class Tests {
 
         @LocalServerPort
         int port;
@@ -100,7 +101,7 @@ class NotFoundWhenHTMLAcceptHeaderTest {
          * At that point you always get a JSON back. Although this can be seen as the correct behaviour,
          * this is not very human friendly when you work on a system that servers both HTML pages and has a REST API.
          */
-        @org.junit.jupiter.api.Test
+        @Test
         void should_return_404_error_page_for_text_html_on_non_existing_path() {
             webTestClient.get()
                     .uri("/non-existing")
