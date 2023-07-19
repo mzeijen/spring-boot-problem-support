@@ -1,11 +1,20 @@
+import io.spring.gradle.dependencymanagement.dsl.DependencyManagementExtension
+
 plugins {
 	java
-	id("org.springframework.boot") version "3.2.0-SNAPSHOT"
-	id("io.spring.dependency-management") version "1.1.0"
+	id("org.springframework.boot") version "3.2.0-SNAPSHOT"  apply false
 }
 
 group = "com.example"
 version = "0.0.1-SNAPSHOT"
+
+apply(plugin = "io.spring.dependency-management")
+
+the<DependencyManagementExtension>().apply {
+	imports {
+		mavenBom(org.springframework.boot.gradle.plugin.SpringBootPlugin.BOM_COORDINATES)
+	}
+}
 
 java {
 	sourceCompatibility = JavaVersion.VERSION_17
